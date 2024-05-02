@@ -7,10 +7,11 @@ import { ElInput, FormRules } from 'element-plus'
 import { useValidator } from '@/hooks/web/useValidator'
 import { BaseButton } from '@/components/Button'
 import { IAgree } from '@/components/IAgree'
+import {registerApi} from '@/api/user'
 
 const emit = defineEmits(['to-login'])
 
-const { formRegister, formMethods } = useForm()
+const { formRegister, formMethods} = useForm()
 const { getElFormExpose } = formMethods
 
 const { t } = useI18n()
@@ -46,15 +47,15 @@ const schema = reactive<FormSchema[]>([
     }
   },
   {
-    field: 'username',
-    label: t('login.username'),
+    field: 'account',
+    label: t('login.account'),
     value: '',
     component: 'Input',
     colProps: {
       span: 24
     },
     componentProps: {
-      placeholder: t('login.usernamePlaceholder')
+      placeholder: t('login.accoundPlaceholder')
     }
   },
   {
@@ -177,10 +178,10 @@ const schema = reactive<FormSchema[]>([
 ])
 
 const rules: FormRules = {
-  username: [required()],
+  account: [required()],
   password: [required()],
   check_password: [required()],
-  code: [required()],
+  // code: [required()],
   iAgree: [required(), check()]
 }
 
@@ -196,6 +197,9 @@ const loginRegister = async () => {
     if (valid) {
       try {
         loading.value = true
+        let data =  await formMethods.getFormData()
+        const res =  await registerApi(data)
+
         toLogin()
       } finally {
         loading.value = false

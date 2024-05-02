@@ -144,6 +144,6 @@ export const useForm = () => {
 
   return {
     formRegister: register,
-    formMethods: methods
+    formMethods: methods,
   }
 }

@@ -12,16 +12,16 @@ export interface DepartmentUserParams {
   pageSize: number
   pageIndex: number
   id: string
-  username?: string
+  account?: string
   account?: string
 }
 
 export interface DepartmentUserItem {
   id: string
-  username: string
+  account: string
   account: string
   email: string
-  createTime: string
+  create_time: string
   role: string
   department: DepartmentItem
 }

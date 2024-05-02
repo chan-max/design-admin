@@ -1155,7 +1155,7 @@ for (let i = 0; i < 4; i++) {
       roleName: roleNames[i],
       role: '@first',
       status: Mock.Random.integer(0, 1),
-      createTime: '@datetime',
+      create_time: '@datetime',
       remark: '@cword(10, 15)',
       menu: menus[i]
     })

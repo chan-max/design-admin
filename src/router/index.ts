@@ -684,6 +684,51 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     ]
   },
   {
+    path: '/resource',
+    component: Layout,
+    redirect: '/resource/group',
+    name: 'ResourceGroup',
+    meta: {
+      title: '资源管理',
+      icon: 'ep:upload-filled',
+      alwaysShow: true
+    },
+    children: [
+      {
+        path: 'group',
+        component: () => import('@/views/Authorization/Department/Department.vue'),
+        name: 'ResourceGroup',
+        meta: {
+          title: '资源分类'
+        }
+      },
+      {
+        path: 'file',
+        component: () => import('@/views/Authorization/User/User.vue'),
+        name: 'ResourceFile',
+        meta: {
+          title: '文件列表'
+        }
+      },
+      {
+        path: 'menu',
+        component: () => import('@/views/Authorization/Menu/Menu.vue'),
+        name: 'Menu',
+        meta: {
+          title: t('router.menuManagement')
+        }
+      },
+      {
+        path: 'role',
+        component: () => import('@/views/Authorization/Role/Role.vue'),
+        name: 'Role',
+        meta: {
+          title: t('router.role')
+        }
+      }
+    ]
+  },
+  {
     path: '/authorization',
     component: Layout,
     redirect: '/authorization/user',

@@ -5,8 +5,8 @@ export const getDepartmentApi = () => {
   return request.get<DepartmentListResponse>({ url: '/mock/department/list' })
 }
 
-export const getUserByIdApi = (params: DepartmentUserParams) => {
-  return request.get<DepartmentUserResponse>({ url: '/mock/department/users', params })
+export const getUserListApi = (data) => {
+  return request.post({ url: '/api/user/getPage', data })
 }
 
 export const deleteUserByIdApi = (ids: string[] | number[]) => {

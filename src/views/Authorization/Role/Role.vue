@@ -54,7 +54,7 @@ const tableColumns = reactive<TableColumn[]>([
     }
   },
   {
-    field: 'createTime',
+    field: 'create_time',
     label: t('tableDemo.displayTime')
   },
   {

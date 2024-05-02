@@ -11,7 +11,7 @@ for (let i = 0; i < 5; i++) {
     // 部门名称
     departmentName: citys[i],
     id: toAnyString(),
-    createTime: '@datetime',
+    create_time: '@datetime',
     // 状态
     status: Mock.Random.integer(0, 1),
     // 备注
@@ -21,7 +21,7 @@ for (let i = 0; i < 5; i++) {
         // 部门名称
         departmentName: '研发部',
         id: toAnyString(),
-        createTime: '@datetime',
+        create_time: '@datetime',
         // 状态
         status: Mock.Random.integer(0, 1),
         // 备注
@@ -31,7 +31,7 @@ for (let i = 0; i < 5; i++) {
         // 部门名称
         departmentName: '产品部',
         id: toAnyString(),
-        createTime: '@datetime',
+        create_time: '@datetime',
         // 状态
         status: Mock.Random.integer(0, 1),
         // 备注
@@ -41,7 +41,7 @@ for (let i = 0; i < 5; i++) {
         // 部门名称
         departmentName: '运营部',
         id: toAnyString(),
-        createTime: '@datetime',
+        create_time: '@datetime',
         // 状态
         status: Mock.Random.integer(0, 1),
         // 备注
@@ -51,7 +51,7 @@ for (let i = 0; i < 5; i++) {
         // 部门名称
         departmentName: '市场部',
         id: toAnyString(),
-        createTime: '@datetime',
+        create_time: '@datetime',
         // 状态
         status: Mock.Random.integer(0, 1),
         // 备注
@@ -61,7 +61,7 @@ for (let i = 0; i < 5; i++) {
         // 部门名称
         departmentName: '销售部',
         id: toAnyString(),
-        createTime: '@datetime',
+        create_time: '@datetime',
         // 状态
         status: Mock.Random.integer(0, 1),
         // 备注
@@ -71,7 +71,7 @@ for (let i = 0; i < 5; i++) {
         // 部门名称
         departmentName: '客服部',
         id: toAnyString(),
-        createTime: '@datetime',
+        create_time: '@datetime',
         // 状态
         status: Mock.Random.integer(0, 1),
         // 备注
@@ -120,13 +120,13 @@ export default [
         mockList.push(
           Mock.mock({
             // 用户名
-            username: '@cname',
+            account: '@cname',
             // 账号
             account: '@first',
             // 邮箱
             email: '@EMAIL',
             // 创建时间
-            createTime: '@datetime',
+            create_time: '@datetime',
             // 用户id
             id: toAnyString()
           })

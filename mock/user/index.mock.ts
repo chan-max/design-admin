@@ -3,21 +3,21 @@ import { SUCCESS_CODE } from '@/constants'
 const timeout = 1000
 
 const List: {
-  username: string
+  account: string
   password: string
   role: string
   roleId: string
   permissions: string | string[]
 }[] = [
   {
-    username: 'admin',
+    account: 'admin',
     password: 'admin',
     role: 'admin',
     roleId: '1',
     permissions: ['*.*.*']
   },
   {
-    username: 'test',
+    account: 'test',
     password: 'test',
     role: 'test',
     roleId: '2',
@@ -31,10 +31,10 @@ export default [
     url: '/mock/user/list',
     method: 'get',
     response: ({ query }) => {
-      const { username, pageIndex, pageSize } = query
+      const { account, pageIndex, pageSize } = query
 
       const mockList = List.filter((item) => {
-        if (username && item.username.indexOf(username) < 0) return false
+        if (account && item.account.indexOf(account) < 0) return false
         return true
       })
       const pageList = mockList.filter(
@@ -59,7 +59,7 @@ export default [
       const data = body
       let hasUser = false
       for (const user of List) {
-        if (user.username === data.username && user.password === data.password) {
+        if (user.account === data.account && user.password === data.password) {
           hasUser = true
           return {
             code: SUCCESS_CODE,

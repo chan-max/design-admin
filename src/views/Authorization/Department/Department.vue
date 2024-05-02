@@ -161,7 +161,7 @@ const crudSchemas = reactive<CrudSchema[]>([
     }
   },
   {
-    field: 'createTime',
+    field: 'create_time',
     label: t('tableDemo.displayTime'),
     search: {
       hidden: true

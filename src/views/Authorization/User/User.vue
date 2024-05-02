@@ -4,8 +4,9 @@ import { useI18n } from '@/hooks/web/useI18n'
 import { Table } from '@/components/Table'
 import { ref, unref, nextTick, watch, reactive } from 'vue'
 import { ElTree, ElInput, ElDivider } from 'element-plus'
-import { getDepartmentApi, getUserByIdApi, saveUserApi, deleteUserByIdApi } from '@/api/department'
+import { getDepartmentApi, getUserListApi, saveUserApi, deleteUserByIdApi } from '@/api/department'
 import type { DepartmentItem, DepartmentUserItem } from '@/api/department/types'
+import {registerApi} from '@/api/user'
 import { useTable } from '@/hooks/web/useTable'
 import { Search } from '@/components/Search'
 import Write from './components/Write.vue'
@@ -20,8 +21,7 @@ const { t } = useI18n()
 const { tableRegister, tableState, tableMethods } = useTable({
   fetchDataApi: async () => {
     const { pageSize, currentPage } = tableState
-    const res = await getUserByIdApi({
-      id: unref(currentNodeKey),
+    const res = await getUserListApi({
       pageIndex: unref(currentPage),
       pageSize: unref(pageSize),
       ...unref(searchParams)
@@ -36,6 +36,7 @@ const { tableRegister, tableState, tableMethods } = useTable({
     return !!res
   }
 })
+
 const { total, loading, dataList, pageSize, currentPage } = tableState
 const { getList, getElTableExpose, delList } = tableMethods
 
@@ -72,66 +73,17 @@ const crudSchemas = reactive<CrudSchema[]>([
     }
   },
   {
-    field: 'username',
-    label: t('userDemo.username')
+    field: 'id',
+    label: 'id'
   },
   {
     field: 'account',
     label: t('userDemo.account')
   },
+
   {
-    field: 'department.id',
-    label: t('userDemo.department'),
-    detail: {
-      hidden: true
-      // slots: {
-      //   default: (data: DepartmentUserItem) => {
-      //     return <>{data.department.departmentName}</>
-      //   }
-      // }
-    },
-    search: {
-      hidden: true
-    },
-    form: {
-      component: 'TreeSelect',
-      componentProps: {
-        nodeKey: 'id',
-        props: {
-          label: 'departmentName'
-        }
-      },
-      optionApi: async () => {
-        const res = await getDepartmentApi()
-        return res.data.list
-      }
-    },
-    table: {
-      hidden: true
-    }
-  },
-  {
-    field: 'role',
-    label: t('userDemo.role'),
-    search: {
-      hidden: true
-    },
-    form: {
-      component: 'Select',
-      value: [],
-      componentProps: {
-        multiple: true,
-        collapseTags: true,
-        maxCollapseTags: 1
-      },
-      optionApi: async () => {
-        const res = await getRoleListApi()
-        return res.data?.list?.map((v) => ({
-          label: v.roleName,
-          value: v.id
-        }))
-      }
-    }
+    field: 'password',
+    label: t('userDemo.password')
   },
   {
     field: 'email',
@@ -144,8 +96,8 @@ const crudSchemas = reactive<CrudSchema[]>([
     }
   },
   {
-    field: 'createTime',
-    label: t('userDemo.createTime'),
+    field: 'create_time',
+    label: t('userDemo.create_time'),
     form: {
       component: 'Input'
     },
@@ -210,7 +162,7 @@ const fetchDepartment = async () => {
   await nextTick()
   unref(treeEl)?.setCurrentKey(currentNodeKey.value)
 }
-fetchDepartment()
+// fetchDepartment()
 
 const currentDepartment = ref('')
 watch(
@@ -277,7 +229,7 @@ const save = async () => {
   if (formData) {
     saveLoading.value = true
     try {
-      const res = await saveUserApi(formData)
+      const res = await registerApi(formData)
       if (res) {
         currentPage.value = 1
         getList()
@@ -290,11 +242,12 @@ const save = async () => {
     }
   }
 }
+
 </script>
 
 <template>
   <div class="flex w-100% h-100%">
-    <ContentWrap class="w-250px">
+    <!-- <ContentWrap class="w-250px">
       <div class="flex justify-center items-center">
         <div class="flex-1">{{ t('userDemo.departmentList') }}</div>
         <ElInput
@@ -327,8 +280,8 @@ const save = async () => {
           </div>
         </template>
       </ElTree>
-    </ContentWrap>
-    <ContentWrap class="flex-[3] ml-20px">
+    </ContentWrap> -->
+    <ContentWrap class="flex-[3]">
       <Search
         :schema="allSchemas.searchSchema"
         @reset="setSearchParams"
