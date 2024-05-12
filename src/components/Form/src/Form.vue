@@ -311,7 +311,7 @@ export default defineComponent({
                     )
                   }
             }
-
+            
             const Comp = () => {
               // 如果field是多层路径，需要转换成对象
               const itemVal = computed({
@@ -322,7 +322,6 @@ export default defineComponent({
                   set(formModel.value, item.field, val)
                 }
               })
-
               return item.component === ComponentNameEnum.UPLOAD ? (
                 <Com
                   vModel:file-list={itemVal.value}

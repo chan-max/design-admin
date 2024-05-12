@@ -703,6 +703,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         }
       },
       {
+        path: 'productModel',
+        component: () => import('@/views/Resource/productModel/index.vue'),
+        name: 'ProductModel',
+        meta: {
+          title: '基础商品模型'
+        }
+      },
+      {
         path: 'file',
         component: () => import('@/views/Authorization/User/User.vue'),
         name: 'ResourceFile',
@@ -710,6 +718,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
           title: '文件列表'
         }
       },
+      
       {
         path: 'menu',
         component: () => import('@/views/Authorization/Menu/Menu.vue'),

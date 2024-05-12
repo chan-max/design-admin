@@ -62,10 +62,10 @@ export const useAppStore = defineStore('app', {
 
       layout: 'classic', // layout布局
       isDark: false, // 是否是暗黑模式
-      currentSize: 'default', // 组件尺寸
+      currentSize: 'small', // 组件尺寸
       theme: {
         // 主题色
-        elColorPrimary: '#409eff',
+        elColorPrimary: '#6900ff',
         // 左侧菜单边框颜色
         leftMenuBorderColor: 'inherit',
         // 左侧菜单背景颜色
